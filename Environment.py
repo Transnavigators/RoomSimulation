@@ -1,34 +1,27 @@
 from tkinter import *
+from Obstacle import *
 
-
-class Window(Frame):
-    def __init__(self, master=None):
-        Frame.__init__(self, master)               
-        self.master = master
-        self.init_window()
-        self.draw_room()
-
-    def init_window(self):
-        self.master.title("Room Simulation")
-        self.canvas = Canvas(self.master, bg="WHITE")
-        self.canvas.pack()
-        self.canvas.bind("<Button-1>", self.place_person)
+class Environment:
+    def __init__(self, obstacles = None, wheelchair = None, person = None):
+        """initialize all things present in the environment"""
+        self.obstacles = obstacles
+        self.wheelchair = wheelchair
+        self.person = person
+        if not self.verify():
+            print("Invalid Initial State")
+            exit();
+            
+    
+    def step(self):
+        """Takes a step in the simulator
+        Processes any movement the wheelchair will do and 
+        verifies that the environment is in a valid state afterwards
+        """
         
-    def draw_room(self):
-        print("draw room here")
-       
-       
-    def place_person(self, event):
-        self.canvas.delete("all")
-        self.canvas.create_rectangle(event.x,event.y,event.x+10,event.y+10, fill="#fb0")
-        
-    def client_exit(self):
-        exit()
-        
-        
-root = Tk()
-
-root.geometry("400x400")
-
-app = Window(master=root)
-root.mainloop()
+    
+    def verify(self):
+        """verify boundaries
+        returns True if state is legal
+        returns False if state is illegal
+        """
+        return True
