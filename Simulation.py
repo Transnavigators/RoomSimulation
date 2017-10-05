@@ -51,6 +51,7 @@ class Simulation(Frame):
    
     def draw_wheelchair(self):
         """Draws the wheelchair"""
+        self.environment.wheelchair.draw(self.canvas)
         
     def draw_person(self):
         """Draws the person"""
@@ -83,6 +84,7 @@ class Simulation(Frame):
         
         self.draw_room()
         self.draw_person()
+        self.draw_wheelchair()
         #self.canvas.create_rectangle(event.x,event.y,event.x+10,event.y+10, fill="#fb0")
         #self.canvas.create_image(self.environment.person.x,self.environment.person.y,image=self.environment.person.image,anchor="nw")
         
