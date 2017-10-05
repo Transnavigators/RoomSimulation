@@ -5,8 +5,7 @@ from Person import *
 from Wheelchair import *
 
 class Simulation(Frame):
-"""
-"""
+    """GUI for the simulation"""
     def __init__(self, master=None):
         """Initializes the environment and the GUI"""
         Frame.__init__(self, master)               
@@ -59,6 +58,7 @@ class Simulation(Frame):
     def say(self):
         """Handles voice commands"""
         print("Saying:", self.command_text_box.get("1.0","end-1c"))
+        self.environment.say(self.command_text_box.get("1.0","end-1c"))
         
     def step(self):
         """Takes one step in the simulation"""

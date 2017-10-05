@@ -9,3 +9,6 @@ class Wheelchair:
         self.xVel = xVel
         self.yVel = yVel
         self.orientation = orientation
+
+        
+    
