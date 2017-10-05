@@ -12,5 +12,6 @@ class Wheelchair:
         self.yVel = yVel
         self.orientation = orientation
 
-        
+    def draw(self, canvas):
+        canvas.create_rectangle()
     
