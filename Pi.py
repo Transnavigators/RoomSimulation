@@ -1,4 +1,5 @@
 from LocalinoServer import *
+from Lidor import *
 
 class Pi:
     """Pi Controller for the wheelchair

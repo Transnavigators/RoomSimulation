@@ -54,7 +54,7 @@ class Simulation(Frame):
         
     def draw_person(self):
         """Draws the person"""
-        environment.person
+        self.environment.person.draw(self.canvas)
    
     def say(self):
         """Handles voice commands"""
@@ -78,10 +78,11 @@ class Simulation(Frame):
     def place_person(self, event):
         """Edits the location of the person in the room"""
         self.canvas.delete("all")
+        
+        self.environment.person.set_pos(event.x, event.y)
+        
         self.draw_room()
-        self.environment.person.x = event.x
-        self.environment.person.y = event.y
-        self.environment.person.draw(self.canvas)
+        self.draw_person()
         #self.canvas.create_rectangle(event.x,event.y,event.x+10,event.y+10, fill="#fb0")
         #self.canvas.create_image(self.environment.person.x,self.environment.person.y,image=self.environment.person.image,anchor="nw")
         

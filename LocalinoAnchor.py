@@ -8,5 +8,6 @@ class LocalinoAnchor:
         
         """
         self.xPos = xPos
+        self.yPos = yPos
         
     
