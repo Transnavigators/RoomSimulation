@@ -1,15 +1,16 @@
-from LocalinoServer import *
-from Lidor import *
+from LocalinoService import *
+from Lidar import *
+from Alexa import *
 
 class Pi:
     """Pi Controller for the wheelchair
     
     """
-    def __init__(self, localino_server = LocalinoServer(), lidar = Lidar(), alexa = Alexa()):
+    def __init__(self, localino_service = LocalinoService(), lidar = Lidar(), alexa = Alexa()):
         """initialize
         all data inputs
         """
-        self.localino_server = localino_server
+        self.localino_service = localino_service
         self.lidar = lidar
         self.alexa = alexa
      

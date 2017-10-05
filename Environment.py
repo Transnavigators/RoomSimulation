@@ -1,12 +1,12 @@
 from tkinter import *
 from Obstacle import *
-
 from LocalinoAnchor import *
-from Lidar import *
-
-from Alexa import *
-
+from LocalinoTag import *
 from LocalinoService import *
+from Lidar import *
+from Alexa import *
+from Pi import *
+
 
 class Environment:
     def __init__(self, obstacles = None, wheelchair = None, person = None, localino_anchors=(), localino_tags=(), lidar = Lidar()):
@@ -16,15 +16,17 @@ class Environment:
         self.wheelchair = wheelchair
         self.person = person
         
+        # initialize sensors
         self.lidar = lidar
         self.localino_anchors = localino_anchors
         self.localino_tags = localino_tags
-        # initialize localino
-        
         
         # initialize the services
         self.localino_service = LocalinoService(anchors = localino_anchors, tags = localino_tags)
         self.alexa = Alexa()
+        
+        #initialize the pi
+        self.pi = Pi(localino_service = self.localino_service, lidar = self.lidar, alexa = self.alexa)
         
         if not self.verify():
             print("Invalid Initial State")
