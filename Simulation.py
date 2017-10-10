@@ -3,6 +3,7 @@ from Environment import *
 from Obstacle import *
 from Person import *
 from Wheelchair import *
+import time
 
 class Simulation(Frame):
 
@@ -71,9 +72,12 @@ class Simulation(Frame):
         """Stops the simulation from running"""
         print("STOP")
         
+        
     def run(self):
         """Runs the simulation"""
         print("RUN")
+        
+            
     
        
     def place_person(self, event):

@@ -25,3 +25,13 @@ Sensors
 Alexa.py - Voice control interface
 Lidar.py - Lidar interface
 Localino.py - Localino interface
+
+
+#TODO
+
+-Thread the simulation class for running the program
+-Implement Methods in Environment.py
+    -step()
+    -verify()
+-Graphics for library
+ 
