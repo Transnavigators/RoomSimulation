@@ -7,11 +7,23 @@ class Lidar:
     so that this function returns information about the environment in the correct form
     """
 
-    def __init__(self, env, xPos=0, yPos=0, orientation=0, field_of_view=120):
+    def __init__(self, environment, xPos=0, yPos=0, orientation=0, field_of_view=120):
         """initialize
         positions and orientations are relative to the wheelchair
         """
+        
+        # save the environment
+        self.environment = environment
+        
+        # save x and y position relative to the wheelchair
         self.xPos = xPos
         self.yPos = yPos
+        
+        # save orientation relative to the wheelchair
         self.orientation = orientation
+        
+        # save the field of view
         self.field_of_view = field_of_view
+        
+        
+        self.datafeed = []

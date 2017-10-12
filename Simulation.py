@@ -14,6 +14,7 @@ class Simulation(Frame):
 
         # generate environment
         obstacles = (Obstacle(10, 10, 40, 400), Obstacle(200, 130, 150, 80))
+        
         self.environment = Environment(obstacles)
 
         self.init_window()
@@ -78,6 +79,7 @@ class Simulation(Frame):
 
         self.environment.person.set_pos(event.x, event.y)
 
+        
         self.draw_room()
         self.draw_person()
         self.draw_wheelchair()

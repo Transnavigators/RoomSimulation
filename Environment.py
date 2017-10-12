@@ -1,8 +1,6 @@
 from tkinter import *
 from Obstacle import *
-from LocalinoAnchor import *
-from LocalinoTag import *
-from LocalinoService import *
+from Localino import *
 from Lidar import *
 from Alexa import *
 from Pi import *
@@ -11,25 +9,30 @@ from Person import *
 
 
 class Environment:
-    def __init__(self, obstacles=[], localino_anchors=(), localino_tags=()):
+    def __init__(self, obstacles=(), localino_anchors=[LocalinoAnchor(),LocalinoAnchor(),LocalinoAnchor()]):
         """Initialize all things present in the environment"""
-        # Initialize the physical objects
-        self.obstacles = obstacles
-        self.wheelchair = Wheelchair(self)
-        self.person = Person(self)
-
+        
+        # Generate Localino Tags
+        wheelchair_tag = LocalinoTag()
+        person_tag = LocalinoTag()
+        
         # Initialize sensors
-        self.lidar = Lidar(self)
         self.localino_anchors = localino_anchors
-        self.localino_tags = localino_tags
+        
+        # Initialize the physical objects
+        self.obstacles = obstacles 
+        self.person = Person(localino_tag = person_tag) # person does not need to know the environment but needs a localino tag
+        self.wheelchair = Wheelchair(environment = self, localino_tag = wheelchair_tag) # wheelchair's sensors need to know the environement and it contains a localino tag
+
 
         # Initialize the services
-        self.localino_service = LocalinoService(anchors=localino_anchors, tags=localino_tags)
+        self.localino_service = LocalinoService(anchors=localino_anchors, tags=[wheelchair_tag, person_tag])
         self.alexa = Alexa()
 
         # Initialize the pi
-        self.pi = Pi()
+        self.pi = Pi(alexa = self.alexa, lidar = self.wheelchair.lidar, localino = self.localino_service, encoder = self.wheelchair.encoder, berryimu = self.wheelchair.berryimu)
 
+        # Verify that all objects are in a valid position
         if not self.verify():
             print("Invalid Initial State")
             exit()
