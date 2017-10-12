@@ -8,4 +8,5 @@ class Alexa:
 
     def say(self, command):
         """Process a voice command"""
+        self.datafeed = command
         

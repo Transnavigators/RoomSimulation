@@ -42,6 +42,8 @@ Localino.py - Location interface
     -verify()
 -Graphics for wheelchair
 
-simulate sensor and service data
+Simulate sensor and services
+
+There is a problem with how to make the chair turn in the sim (i think we are going to make the state invalid if the chair has an obstacle in a circular path around it)
 
  

@@ -19,6 +19,8 @@ class Simulation(Frame):
 
         self.init_window()
         self.draw_room()
+        self.draw_person()
+        self.draw_wheelchair()
 
     def init_window(self):
         """Prepares the window with all GUI elements"""
