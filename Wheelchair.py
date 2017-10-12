@@ -1,3 +1,4 @@
+import tkinter
 from Lidar import *
 from Encoder import *
 from BerryIMU import *
@@ -20,6 +21,7 @@ class Wheelchair:
         """
         
         # save the wheelchair physical properties
+        self.image = tkinter.PhotoImage(file="Wheelchair.png")
         self.height = height
         self.width = width
         self.mass = mass
