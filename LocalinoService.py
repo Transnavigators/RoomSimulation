@@ -3,15 +3,12 @@ class LocalinoService:
     TODO: Research localino and determine what data it will give the PI
     
     """
+
     def __init__(self, anchors=(), tags=()):
         """initialize
         """
         self.anchors = anchors
         self.tags = tags
-            
-        
-        
+
     def get_position(tag):
         """Gets position of specified tag"""
-        
-    
