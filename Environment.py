@@ -53,9 +53,10 @@ class Environment:
         """Takes a step in the simulator
         Processes any movement the wheelchair will do and 
         """
-        
+        self.wheelchair.orientation+=.5
         if not self.verify():
             print("Invalid State")
+            
 
     def verify(self):
         """verifies boundaries of all physicals objects in the simulation

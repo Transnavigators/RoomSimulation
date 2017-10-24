@@ -45,6 +45,7 @@ class Simulation(Frame):
 
     def draw(self):
         """Draws the the environment"""
+        self.canvas.delete("all")
         for obstacle in self.environment.obstacles:
             obstacle.draw(self.canvas)
         self.environment.wheelchair.draw(self.canvas)
@@ -60,6 +61,7 @@ class Simulation(Frame):
         """Takes one step in the simulation"""
         print("STEP")
         self.environment.step()
+        self.draw()
 
     def stop(self):
         """Stops the simulation from running"""
@@ -71,11 +73,7 @@ class Simulation(Frame):
 
     def place_person(self, event):
         """Edits the location of the person in the room"""
-        self.canvas.delete("all")
-
         self.environment.move_person(event.x, event.y)
-
-        
         self.draw()
         # self.canvas.create_rectangle(event.x,event.y,event.x+10,event.y+10, fill="#fb0")
         # self.canvas.create_image(self.environment.person.x,self.environment.person.y,image=self.environment.person.image,anchor="nw")

@@ -1,3 +1,4 @@
+import math
 import tkinter
 from Lidar import *
 from Encoder import *
@@ -6,6 +7,7 @@ from BerryIMU import *
 class Wheelchair:
     """ Represents a the wheelchair
     Note: x1, y1, x2, y2 must represent upper left corner and lower right corner of the object
+
     
     CHALLENGE: HOW TO TURN
     """
@@ -14,7 +16,7 @@ class Wheelchair:
         """initialize
         environment is the environment that the wheelchair is in
         localino tag is the localino tag which is attached to the wheelchair
-        orientation is a clockwise from the verticle
+        orientation is a clockwise from the verticle  (rad)
         xPos, yPos are coordinates of the center of the chair
         width = length in x dir
         height = length in y dir
@@ -49,11 +51,7 @@ class Wheelchair:
 
     def update_sensor_positions(self):
         """Updates the position and orientation all sensors on the chair during a move"""
-        # update lidar
-        self.lidar.xPos = self.lidar.xPos + self.x1
-        self.lidar.yPos = self.lidar.yPos + self.y1
-        self.lidar.orientation = self.lidar.orientation + self.orientation
-        
+
         # update the position of the localino tag (center of chair)
         self.localino_tag = self.xPos
         self.localino_tag = self.yPos
@@ -67,7 +65,16 @@ class Wheelchair:
         self.y2 = self.yPos + self.height / 2    
 
     def draw(self, canvas):
-        canvas.create_rectangle(self.x1, self.y1, self.x2, self.y2, fill="yellow")
-        # drawing based on the angle of the chair will be difficult
+        cosval = math.cos(self.orientation)
+        sinval = math.sin(self.orientation)
+        
+        # create the rotated vertices
+        vertices = []
+        vertices.append([(self.x1-self.xPos)*cosval-(self.y1-self.yPos)*sinval+self.xPos,(self.x1-self.xPos)*sinval+(self.y1-self.yPos)*cosval+self.yPos])
+        vertices.append([(self.x1+self.width-self.xPos)*cosval-(self.y1-self.yPos)*sinval+self.xPos,(self.x1+self.width-self.xPos)*sinval+(self.y1-self.yPos)*cosval+self.yPos])
+        vertices.append([(self.x2-self.xPos)*cosval-(self.y2-self.yPos)*sinval+self.xPos,(self.x2-self.xPos)*sinval+(self.y2-self.yPos)*cosval+self.yPos])
+        vertices.append([(self.x1-self.xPos)*cosval-(self.y1+self.height-self.yPos)*sinval+self.xPos,(self.x1-self.xPos)*sinval+(self.y1+self.height-self.yPos)*cosval+self.yPos])
+        
+        canvas.create_polygon(vertices, fill="yellow")
 
         
