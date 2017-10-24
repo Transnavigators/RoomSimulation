@@ -18,9 +18,7 @@ class Simulation(Frame):
         self.environment = Environment(width=500, height=500, obstacles=obstacles)
 
         self.init_window()
-        self.draw_room()
-        self.draw_person()
-        self.draw_wheelchair()
+        self.draw()
 
     def init_window(self):
         """Prepares the window with all GUI elements"""
@@ -44,18 +42,14 @@ class Simulation(Frame):
         self.stop_button.grid(row=2, column=1)
         self.run_button.grid(row=2, column=2)
 
-    def draw_room(self):
-        """Draws all obstacles in the room"""
+
+    def draw(self):
+        """Draws the the environment"""
         for obstacle in self.environment.obstacles:
-            self.canvas.create_rectangle(obstacle.x1, obstacle.y1, obstacle.x2, obstacle.y2, fill=obstacle.color)
-
-    def draw_wheelchair(self):
-        """Draws the wheelchair"""
+            obstacle.draw(self.canvas)
         self.environment.wheelchair.draw(self.canvas)
-
-    def draw_person(self):
-        """Draws the person"""
         self.environment.person.draw(self.canvas)
+
 
     def say(self):
         """Handles voice commands"""
@@ -82,9 +76,7 @@ class Simulation(Frame):
         self.environment.move_person(event.x, event.y)
 
         
-        self.draw_room()
-        self.draw_person()
-        self.draw_wheelchair()
+        self.draw()
         # self.canvas.create_rectangle(event.x,event.y,event.x+10,event.y+10, fill="#fb0")
         # self.canvas.create_image(self.environment.person.x,self.environment.person.y,image=self.environment.person.image,anchor="nw")
 

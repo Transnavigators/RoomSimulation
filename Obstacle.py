@@ -14,3 +14,6 @@ class Obstacle:
         self.x2 = x2
         self.y2 = y2
         self.color = color
+
+    def draw(self, canvas):
+        canvas.create_rectangle(self.x1, self.y1, self.x2, self.y2, fill=self.color)
