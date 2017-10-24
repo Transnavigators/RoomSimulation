@@ -1,3 +1,5 @@
+import threading
+
 class Lidar:
     """Takes data from the environment and makes it available in the form provided by Lidar
     
@@ -27,3 +29,10 @@ class Lidar:
         
         
         self.datafeed = []
+        #threading.Thread(target=self.run).start()
+    
+    def run(self):
+        #while True:
+            #do stuff
+        #    pass
+        pass

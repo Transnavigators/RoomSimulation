@@ -1,3 +1,4 @@
+import threading
 
 class LocalinoService:
     """Takes data from the environment and makes it available in the form provided by localino
@@ -11,6 +12,13 @@ class LocalinoService:
         """
         self.anchors = anchors
         self.tags = tags
+        threading.Thread(target=self.run).start()
+    
+    def run(self):
+        #while True:
+            #do stuff
+        #    pass
+        pass
 
     def add_tag(tag):
         """adds a tag to the service"""

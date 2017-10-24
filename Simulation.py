@@ -3,6 +3,7 @@ from Environment import *
 from Obstacle import *
 from Person import *
 from Wheelchair import *
+import threading
 import time
 
 
@@ -19,6 +20,7 @@ class Simulation(Frame):
 
         self.init_window()
         self.draw()
+        self.running = False
 
     def init_window(self):
         """Prepares the window with all GUI elements"""
@@ -66,10 +68,17 @@ class Simulation(Frame):
     def stop(self):
         """Stops the simulation from running"""
         print("STOP")
+        self.running = False
 
     def run(self):
         """Runs the simulation"""
         print("RUN")
+        self.running = True
+        threading.Thread(target=self.runloop, daemon=True).start()
+
+    def runloop(self):
+        while self.running:
+            self.step()
 
     def place_person(self, event):
         """Edits the location of the person in the room"""
