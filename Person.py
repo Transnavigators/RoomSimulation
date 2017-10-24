@@ -6,7 +6,7 @@ class Person:
     Note: x1, y1, x2, y2 must represent upper left corner and lower right corner of the object
     """
 
-    def __init__(self, localino_tag, x=0, y=0):
+    def __init__(self, localino_tag, x=400, y=400):
         """initialize variables:
         localino_tag is the tag connected to the person
         x,y are the center position of the person"""

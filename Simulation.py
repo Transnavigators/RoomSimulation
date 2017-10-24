@@ -13,9 +13,9 @@ class Simulation(Frame):
         self.master = master
 
         # generate environment
-        obstacles = (Obstacle(10, 10, 40, 400), Obstacle(200, 130, 150, 80))
+        obstacles = (Obstacle(10, 10, 40, 400), Obstacle(150, 80, 200, 180))
         
-        self.environment = Environment(obstacles)
+        self.environment = Environment(width=500, height=500, obstacles=obstacles)
 
         self.init_window()
         self.draw_room()
@@ -79,7 +79,7 @@ class Simulation(Frame):
         """Edits the location of the person in the room"""
         self.canvas.delete("all")
 
-        self.environment.person.set_pos(event.x, event.y)
+        self.environment.move_person(event.x, event.y)
 
         
         self.draw_room()
