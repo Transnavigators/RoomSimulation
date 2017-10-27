@@ -77,4 +77,12 @@ class Wheelchair:
         
         canvas.create_polygon(vertices, fill="yellow")
 
+        # create lidar dots
+        for angle in range(0, 360):
+            d = self.lidar.datafeed[angle]
+            if d != 0:
+                angle_rad = math.radians(angle)
+                x = self.xPos+d*math.cos(angle_rad)
+                y = self.yPos-d*math.sin(angle_rad)
+                canvas.create_oval(x-1,y-1,x+1,y+1,fill="red")
         

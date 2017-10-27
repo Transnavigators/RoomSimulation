@@ -54,9 +54,41 @@ class Environment:
         Processes any movement the wheelchair will do and 
         """
         self.wheelchair.orientation+=.5
+
         if not self.verify():
             print("Invalid State")
-            
+
+    def line_rect_intersection(self,ray,obstacle):
+        lines = [(obstacle.x1,obstacle.y1,
+                  obstacle.x1,obstacle.y2),
+                 (obstacle.x1,obstacle.y1,
+                  obstacle.x2,obstacle.y1),
+                 (obstacle.x2,obstacle.y1,
+                  obstacle.x2,obstacle.y2),
+                 (obstacle.x1,obstacle.y2,
+                  obstacle.x2,obstacle.y2)]
+        #https://www.topcoder.com/community/data-science/data-science-tutorials/geometry-concepts-line-intersection-and-its-applications/
+        a1 = ray[1]-ray[3]
+        b1 = ray[2]-ray[0]
+        c1 = a1*ray[0]+b1*ray[1]
+        d = math.inf
+        #Check each line segment for an intersection and return the closest one
+        for line in lines:
+            #Solve for the intersection of 2 lines
+            a2 = line[1]-line[3]
+            b2 = line[2]-line[0]
+            c2 = a2*line[0]+b2*line[1]
+            det = a1*b2-a2*b1
+            if det != 0:
+                x = (b2*c1-b1*c2)/det
+                y = (a1*c2-a2*c1)/det
+                #Check if the intersection lies on the obstacle's line segment
+                if line[0] <= x <= line[2] and line[1] <= y <= line[3]:
+                    d = min(d, math.hypot(x - self.wheelchair.xPos, y - self.wheelchair.yPos))
+        if math.isinf(d):
+            return 0
+        else:
+            return d
 
     def verify(self):
         """verifies boundaries of all physicals objects in the simulation
