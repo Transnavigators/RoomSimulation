@@ -19,8 +19,6 @@ class Environment:
         wheelchair_tag = LocalinoTag()
         person_tag = LocalinoTag()
         
-        # Initialize sensors
-        self.localino_anchors = localino_anchors
         
         # Initialize the physical objects
         self.obstacles = obstacles 
