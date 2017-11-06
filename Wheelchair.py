@@ -74,7 +74,7 @@ class Wheelchair:
         vertices.append([(self.x1+self.width-self.xPos)*cosval-(self.y1-self.yPos)*sinval+self.xPos,(self.x1+self.width-self.xPos)*sinval+(self.y1-self.yPos)*cosval+self.yPos])
         vertices.append([(self.x2-self.xPos)*cosval-(self.y2-self.yPos)*sinval+self.xPos,(self.x2-self.xPos)*sinval+(self.y2-self.yPos)*cosval+self.yPos])
         vertices.append([(self.x1-self.xPos)*cosval-(self.y1+self.height-self.yPos)*sinval+self.xPos,(self.x1-self.xPos)*sinval+(self.y1+self.height-self.yPos)*cosval+self.yPos])
-        
+
         canvas.create_polygon(vertices, fill="yellow")
 
         # create lidar dots

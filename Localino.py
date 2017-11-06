@@ -7,11 +7,12 @@ class LocalinoService:
     
     """
 
-    def __init__(self, anchors=[], tags=[]):
+    def __init__(self, person_tag, wheelchair_tag, anchors=[]):
         """initialize
         """
         self.anchors = anchors
-        self.tags = tags
+        self.wheelchair_tag = wheelchair_tag
+        self.person_tag = person_tag
         threading.Thread(target=self.run).start()
     
     def run(self):
@@ -20,16 +21,21 @@ class LocalinoService:
         #    pass
         pass
 
-    def add_tag(tag):
+    def add_tag(self, tag):
         """adds a tag to the service"""
         self.tags.append(tag)
         
-    def add_anchor(anchor):
+    def add_anchor(self, anchor):
         """adds an anchor to the service"""
         self.anchors.append(anchor)
     
-    def get_position(tag):
-        """Gets position of specified tag"""
+    def get_person(self):
+        """Gets position of person tag"""
+        return self.person_tag
+        
+    def get_wheelchair(self):
+        """Gets position of person tag"""
+        return self.wheelchair_tag
     
         
 class LocalinoTag:

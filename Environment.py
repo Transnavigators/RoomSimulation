@@ -27,7 +27,7 @@ class Environment:
 
 
         # Initialize the services
-        self.localino_service = LocalinoService(anchors=localino_anchors, tags=[wheelchair_tag, person_tag])
+        self.localino_service = LocalinoService(anchors=localino_anchors, wheelchair_tag=wheelchair_tag, person_tag=person_tag)
         self.alexa = Alexa()
 
         # Initialize the pi
@@ -51,8 +51,18 @@ class Environment:
         """Takes a step in the simulator
         Processes any movement the wheelchair will do and 
         """
-        self.wheelchair.orientation+=.5
-
+        self.pi.step()
+        
+        self.wheelchair.orientation = self.pi.dir
+        
+        self.wheelchair.xVel = math.cos(self.wheelchair.orientation)*self.pi.vel
+        self.wheelchair.yVel = math.sin(self.wheelchair.orientation)*self.pi.vel
+        
+        self.wheelchair.xPos += self.wheelchair.xVel
+        self.wheelchair.yPos += self.wheelchair.yVel
+        print(self.wheelchair.xPos,self.wheelchair.yPos)
+        self.wheelchair.update_sensor_positions()
+        self.wheelchair.update_boundary_positions()
         if not self.verify():
             print("Invalid State")
 

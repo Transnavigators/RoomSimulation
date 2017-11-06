@@ -10,3 +10,6 @@ class Alexa:
         """Process a voice command"""
         self.datafeed = command
         
+    def run(self):
+        pass
+        
